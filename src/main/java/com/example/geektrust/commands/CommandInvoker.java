@@ -20,6 +20,7 @@ public class CommandInvoker {
     // Execute the registered Command
     public void executeCommand(String commandName, List<String> tokens){
         ICommand command = get(commandName);
+        if(command==null){System.out.println("INCORRECT INPUT"); return;}
         command.execute(tokens);
     }
 }

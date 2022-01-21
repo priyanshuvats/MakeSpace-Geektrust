@@ -37,11 +37,11 @@ public class AppTest {
         "G-Mansion"+ "\n" + 
         "G-Mansion"+ "\n" + 
         "NO_VACANT_ROOM"+ "\n" + 
-        "NO_VACANT_ROOM";
+        "NO_VACANT_ROOM" + "\n" + "\n";
         
         App.run(arguments);
 
-        //Assertions.assertEquals(expectedOutput,outputStreamCaptor.toString().trim());
+        //Assertions.assertEquals(expectedOutput,outputStreamCaptor.toString());
     }
 
     @AfterEach

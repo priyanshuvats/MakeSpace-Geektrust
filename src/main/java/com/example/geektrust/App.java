@@ -31,7 +31,8 @@ public class App {
     }
 
     public static void main(String[] args){
-        List<String> commandLineArgs = Arrays.asList(args);
+       // List<String> commandLineArgs = Arrays.asList(args);
+        List<String> commandLineArgs = Arrays.asList(new String[]{"temp/input1.txt"});
         run(commandLineArgs);
     }
 }

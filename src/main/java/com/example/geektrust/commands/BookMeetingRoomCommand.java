@@ -17,13 +17,18 @@ public class BookMeetingRoomCommand implements ICommand {
 
     @Override
     public void execute(List<String> tokens) {
+
+        if(tokens==null || tokens.size()<3){System.out.println("INCORRECT INPUT"); return;}
+
         String start = tokens.get(1);
         String end = tokens.get(2);
-        int participants = Integer.valueOf(tokens.get(3));
 
         try {
+            int participants = Integer.parseInt(tokens.get(3));
             String name = meetingSchedulerService.bookMeetingRoom(start, end, participants);
             System.out.println(name);
+        } catch(NumberFormatException e){
+            System.out.println("INCORRECT_INPUT");
         } catch (ParseException e) {
             System.out.println("INCORRECT_INPUT");
         } catch (IncorrectInputException e) {

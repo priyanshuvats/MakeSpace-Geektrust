@@ -24,7 +24,7 @@ public class AppTest {
     void runTest(){
         
         List<String> arguments= new ArrayList<>(List.of("./temp/input1.txt"));
-        String expectedOutput = "C-Cave D-Tower G-Mansion"+ "\n" + 
+        String expectedOutput = "\n" + "C-Cave D-Tower G-Mansion"+ "\n" + 
         "C-Cave"+ "\n" + 
         "NO_VACANT_ROOM"+ "\n" + 
         "G-Mansion"+ "\n" + 
@@ -37,7 +37,7 @@ public class AppTest {
         "G-Mansion"+ "\n" + 
         "G-Mansion"+ "\n" + 
         "NO_VACANT_ROOM"+ "\n" + 
-        "NO_VACANT_ROOM" + "\n" + "\n";
+        "NO_VACANT_ROOM" + "\n";
         
         App.run(arguments);
 

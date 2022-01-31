@@ -59,8 +59,8 @@ public class BookMeetingRoomCommandTest {
     }
 
     @Test
-    @DisplayName("Test - Execute Method - shouldPrintIncorrectInput")
-    public void executeMethodTest_shouldPrintIncorrectInput()
+    @DisplayName("Test - Execute Method - Incorrect Time - shouldPrintIncorrectInput")
+    public void executeMethodTest_incorrectTime_shouldPrintIncorrectInput()
             throws ParseException, IncorrectInputException, RoomNotAvailableException
     {   
         when(meetingSchedulerServiceMock.bookMeetingRoom("12:00", "12:25", 6)).thenThrow(new IncorrectInputException());
@@ -73,6 +73,42 @@ public class BookMeetingRoomCommandTest {
 
         Assertions.assertEquals(expected,outputStreamCaptor.toString().trim());
     }
+
+
+    @Test
+    @DisplayName("Test - Execute Method - Incorrect Args - shouldPrintIncorrectInput")
+    public void executeMethodTest_incorrectArgs_shouldPrintIncorrectInput()
+            throws ParseException, IncorrectInputException, RoomNotAvailableException
+    {   
+        //when(meetingSchedulerServiceMock.bookMeetingRoom("12:00", "12:25", 6)).thenThrow(new IncorrectInputException());
+        
+        String expected = "INCORRECT_INPUT";
+
+        List<String> commands = new ArrayList<String>();
+
+        commands.add("BOOK"); commands.add("12:00"); commands.add("12:15");
+        bookMeetingRoomCommand.execute(commands);
+
+        Assertions.assertEquals(expected,outputStreamCaptor.toString().trim());
+    }
+
+    @Test
+    @DisplayName("Test - Execute Method - Incorrect Capacity - shouldPrintIncorrectInput")
+    public void executeMethodTest_incorrectCapacity_shouldPrintIncorrectInput()
+            throws ParseException, IncorrectInputException, RoomNotAvailableException
+    {   
+        //when(meetingSchedulerServiceMock.bookMeetingRoom("12:00", "12:25", 6)).thenThrow(new IncorrectInputException());
+        
+        String expected = "INCORRECT_INPUT";
+
+        List<String> commands = new ArrayList<String>();
+
+        commands.add("BOOK"); commands.add("12:00"); commands.add("12:15"); commands.add("lol");
+        bookMeetingRoomCommand.execute(commands);
+
+        Assertions.assertEquals(expected,outputStreamCaptor.toString().trim());
+    }
+
 
     @Test
     @DisplayName("Test - Execute Method - shouldPrintNoVacantRoom")

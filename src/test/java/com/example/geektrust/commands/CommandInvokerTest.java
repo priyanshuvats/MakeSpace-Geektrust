@@ -3,6 +3,11 @@ package com.example.geektrust.commands;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.verify;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,6 +42,19 @@ public class CommandInvokerTest {
 
         verify(ShowVacantRoomCommandMock).execute(anyList());
         verify(bookMeetingRoomCommandMock).execute(anyList());
+
+    }
+
+    @Test
+    @DisplayName("executeCommand method Should print Incorrect Imput on Invalid Commands")
+    public void executeCommand_GivenInvalidTokens_ShouldPrintIncorrectInput() {
+        
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        commandInvoker.executeCommand("LOL", Arrays.asList(new String[]{"12:00", "12:30"}));
+
+        Assertions.assertEquals("INCORRECT_INPUT", outputStreamCaptor.toString().trim());
 
     }
 

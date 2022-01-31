@@ -64,8 +64,8 @@ public class ShowVacantRoomCommandTest {
     }
 
     @Test
-    @DisplayName("Test - Execute Method - shouldPrintIncorrectInput")
-    public void executeMethodTest_shouldPrintIncorrectInput()
+    @DisplayName("Test - Execute Method - Incorrect Time - shouldPrintIncorrectInput")
+    public void executeMethodTest_incorrectTime_shouldPrintIncorrectInput()
             throws ParseException, IncorrectInputException, RoomNotAvailableException
     {   
         when(meetingSchedulerServiceMock.viewAvailableMeetingRoom("12:00", "12:25")).thenThrow(new IncorrectInputException());
@@ -74,6 +74,22 @@ public class ShowVacantRoomCommandTest {
 
         List<String> commands = new ArrayList<String>();
         commands.add("VACANCY"); commands.add("12:00"); commands.add("12:25");
+        showVacantRoomCommand.execute(commands);
+
+        Assertions.assertEquals(expected,outputStreamCaptor.toString().trim());
+    }
+
+    @Test
+    @DisplayName("Test - Execute Method - Incorrect args - shouldPrintIncorrectInput")
+    public void executeMethodTest_incorrectArgs_shouldPrintIncorrectInput()
+            throws ParseException, IncorrectInputException, RoomNotAvailableException
+    {   
+//        when(meetingSchedulerServiceMock.viewAvailableMeetingRoom("12:00", "12:25")).thenThrow(new IncorrectInputException());
+        
+        String expected = "INCORRECT_INPUT";
+
+        List<String> commands = new ArrayList<String>();
+        commands.add("VACANCY"); commands.add("12:00");
         showVacantRoomCommand.execute(commands);
 
         Assertions.assertEquals(expected,outputStreamCaptor.toString().trim());

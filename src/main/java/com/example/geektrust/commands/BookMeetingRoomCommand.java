@@ -18,7 +18,7 @@ public class BookMeetingRoomCommand implements ICommand {
     @Override
     public void execute(List<String> tokens) {
 
-        if(tokens==null || tokens.size()<3){System.out.println("INCORRECT INPUT"); return;}
+        if(tokens==null || tokens.size()<4){System.out.println("INCORRECT_INPUT"); return;}
 
         String start = tokens.get(1);
         String end = tokens.get(2);
